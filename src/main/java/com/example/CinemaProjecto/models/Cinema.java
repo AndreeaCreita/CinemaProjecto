@@ -8,23 +8,33 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+
 @Data
 @Entity
 @Builder
-@Table(name = "users")
+@Table(name = "cinema")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Cinema {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
-    private String email;
-    @Column(nullable = false)
-    private String firstName;
-    @Column(nullable = false)
-    private String lastName;
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ticket> tickets;
-}
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String location;
+
+    @OneToMany(mappedBy = "cinema")
+    private List<Ticket> tickets;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "cinema_movie",
+            joinColumns = @JoinColumn(name = "cinema_id"),
+            inverseJoinColumns = @JoinColumn(name = "movie_id")
+    )
+    private List<Movie> movies;
+}

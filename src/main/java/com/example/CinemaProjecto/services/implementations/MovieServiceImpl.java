@@ -1,6 +1,10 @@
 package com.example.CinemaProjecto.services.implementations;
 
+import com.example.CinemaProjecto.advice.NotFoundException;
 import com.example.CinemaProjecto.dtos.MovieDto;
+import com.example.CinemaProjecto.models.Cinema;
+import com.example.CinemaProjecto.models.Genre;
+import com.example.CinemaProjecto.models.Movie;
 import com.example.CinemaProjecto.repositories.MovieRepository;
 import com.example.CinemaProjecto.services.MovieService;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +18,28 @@ public class MovieServiceImpl implements MovieService {
     private final MovieRepository repository;
     @Override
     public List<MovieDto> getAll() {
-        return null;
+        return repository.findAll().stream().map(m ->
+                new MovieDto(
+                        m.getTitle(),
+                        m.getDescription(),
+                        m.getGenres().stream().map(Genre::getName).toList(),
+                        null,   //todo georgian sa rezolvi aici
+                        m.getCinemas().stream().map(Cinema::getName).toList()
+                )).toList();
+
     }
 
     @Override
     public MovieDto getById(Long id) {
-        return null;
+        Movie m = repository.findById(id).orElseThrow(() ->
+                new NotFoundException("Movie not found"));
+        return new MovieDto(
+                m.getTitle(),
+                m.getDescription(),
+                m.getGenres().stream().map(Genre::getName).toList(),
+                null,
+                m.getCinemas().stream().map(Cinema::getName).toList()
+        );
     }
 
     @Override
@@ -33,8 +53,20 @@ public class MovieServiceImpl implements MovieService {
                 new MovieDto(
                         m.getTitle(),
                         m.getDescription(),
-                        m.getGenres().stream().map(g -> g.getName()).toList(),
-                        m.getCinema().getName()
+                        m.getGenres().stream().map(Genre::getName).toList(),
+                        null,
+                        m.getCinemas().stream().map(Cinema::getName).toList()
                 )).toList();
+    }
+
+    @Override
+    public List<MovieDto> getMoviesByCinema(String cinema) {
+        return repository.findByCinema(cinema).stream().map(m ->
+            new MovieDto(m.getTitle(), m.getDescription(),
+                m.getGenres().stream().map(Genre::getName).toList(),
+                null,   ///todo pune actorii
+                m.getCinemas().stream().map(Cinema::getName).toList()
+            )
+        ).toList();
     }
 }

@@ -11,6 +11,6 @@ public class MovieDto {
     private String title;
     private String description;
     private List<String> genres;
-//    private actors
-    private String cinema;
+    private List<String> actors;
+    private List<String> cinemas;
 }

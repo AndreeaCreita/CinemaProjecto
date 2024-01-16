@@ -9,4 +9,5 @@ public interface MovieService {
     MovieDto getById(Long id);
     List<MovieDto> getMoviesByName(String name);
     List<MovieDto> getMoviesByGenre(String genre);
+    List<MovieDto> getMoviesByCinema(String cinema);
 }

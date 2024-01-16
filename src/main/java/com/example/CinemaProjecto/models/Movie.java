@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "movies")
+@Table
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,7 +45,11 @@ public class Movie {
     @OneToMany(mappedBy = "movie")
     private List<Ticket> tickets;
 
-    @ManyToOne
-    @JoinColumn(name = "cinema_id")
-    private Cinema cinema;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "cinema_movie",
+            joinColumns = @JoinColumn(name = "movie_id"),
+            inverseJoinColumns = @JoinColumn(name = "cinema_id")
+    )
+    private List<Cinema> cinemas;
 }

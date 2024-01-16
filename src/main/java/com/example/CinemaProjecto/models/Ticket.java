@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Builder
-@Table(name = "tickets")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 public class Ticket {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

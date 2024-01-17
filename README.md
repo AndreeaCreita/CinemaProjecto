@@ -27,8 +27,6 @@ Users can explore available cinemas, view movie listings, and get information ab
 Display a list of cinemas with basic details (name, location). <br>
 Allow users to click on a cinema to view all movies available. <br>
 Show movie information (title, description, genre) for each movie.
-3. User Interaction: <br>
-Users can click on a movie to view more details.
 
 ### Cinema and Movie Selection
 
@@ -36,8 +34,6 @@ Users can click on a movie to view more details.
 2. Functionality: <br>
 Implement a selection process for cinemas and movies. <br>
 Show detailed information about the selected movie (description, genre, actors).
-3. User Interaction: <br>
-Users can navigate between cinemas and movies, selecting the ones they are interested in.
 
 ### Ticket Purchase
 
@@ -45,17 +41,13 @@ Users can navigate between cinemas and movies, selecting the ones they are inter
 2. Functionality: <br>
 Allow users to pick a date and time for a specific movie. <br>
 Display available seats and show the number of seats left.
-3. User Interaction: <br>
-Users can choose the number of tickets and proceed to checkout.
 
 ### Movie Filtering
 
 1. Description: <br> Users can find specific movies by filtering based on name and category.
 2. Functionality: <br>
 Provide a search option to filter movies by name. <br>
-Implement category-based filters to find movies by genre. 
-3. User Interaction: <br>
-Users can input movie names or select categories to find the desired movies.
+Implement category-based filters to find movies by genre.
 
 ### Ticket Details
 
@@ -63,6 +55,4 @@ Users can input movie names or select categories to find the desired movies.
 2. Functionality: <br>
 Display information about purchased tickets (user's name, movie, cinema, date, time). <br>
 Show the number of seats reserved for each ticket.
-3. User Interaction: <br>
-Users can view their ticket details and track their bookings.
 

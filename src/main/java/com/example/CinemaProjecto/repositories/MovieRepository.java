@@ -13,6 +13,6 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findByGenre(String genre);
 
 
-    @Query("SELECT m FROM Movie m JOIN m.cinemas c where c.name = :cinema")
+    @Query("SELECT m FROM Movie m JOIN m.cinemaMovies cm where cm.cinema.name = :cinema")
     List<Movie> findByCinema(String cinema);
 }

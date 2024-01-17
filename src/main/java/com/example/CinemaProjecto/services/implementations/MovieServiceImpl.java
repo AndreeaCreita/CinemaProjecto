@@ -24,7 +24,8 @@ public class MovieServiceImpl implements MovieService {
                         m.getDescription(),
                         m.getGenres().stream().map(Genre::getName).toList(),
                         null,   //todo georgian sa rezolvi aici
-                        m.getCinemas().stream().map(Cinema::getName).toList()
+//                        m.getCinemas().stream().map(Cinema::getName).toList()
+                        m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
                 )).toList();
 
     }
@@ -38,7 +39,8 @@ public class MovieServiceImpl implements MovieService {
                 m.getDescription(),
                 m.getGenres().stream().map(Genre::getName).toList(),
                 null,
-                m.getCinemas().stream().map(Cinema::getName).toList()
+//                m.getCinemas().stream().map(Cinema::getName).toList()
+                m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
         );
     }
 
@@ -55,7 +57,8 @@ public class MovieServiceImpl implements MovieService {
                         m.getDescription(),
                         m.getGenres().stream().map(Genre::getName).toList(),
                         null,
-                        m.getCinemas().stream().map(Cinema::getName).toList()
+//                        m.getCinemas().stream().map(Cinema::getName).toList()
+                        m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
                 )).toList();
     }
 
@@ -65,7 +68,8 @@ public class MovieServiceImpl implements MovieService {
             new MovieDto(m.getTitle(), m.getDescription(),
                 m.getGenres().stream().map(Genre::getName).toList(),
                 null,   ///todo pune actorii
-                m.getCinemas().stream().map(Cinema::getName).toList()
+//                m.getCinemas().stream().map(Cinema::getName).toList()
+                m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
             )
         ).toList();
     }

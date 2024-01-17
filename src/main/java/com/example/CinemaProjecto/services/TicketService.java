@@ -1,4 +1,8 @@
 package com.example.CinemaProjecto.services;
 
-public class TicketService {
+import com.example.CinemaProjecto.dtos.RequestTicketDto;
+import com.example.CinemaProjecto.dtos.TicketDto;
+
+public interface TicketService {
+    TicketDto createTicket(RequestTicketDto requestTicketDto);
 }

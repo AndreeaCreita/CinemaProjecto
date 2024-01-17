@@ -13,10 +13,10 @@ insert into movie(id, description, title)
 insert into movie(id, description, title)
     values(3, 'Shrek', 'Shrekl 12312');
 
-insert into cinema_movie(cinema_id, movie_id) values(1, 1);
-insert into cinema_movie(cinema_id, movie_id) values(2, 1);
-insert into cinema_movie(cinema_id, movie_id) values(3, 1);
-insert into cinema_movie(cinema_id, movie_id) values(2, 2);
+insert into cinema_movie(id, cinema_id, movie_id, seats) values(1, 1, 1, 60);
+insert into cinema_movie(id, cinema_id, movie_id, seats) values(2, 2, 1, 60);
+insert into cinema_movie(id, cinema_id, movie_id, seats) values(3, 3, 1, 80);
+insert into cinema_movie(id, cinema_id, movie_id, seats) values(4, 2, 2, 100);
 
 insert into movie_genre(movie_id, genre_id) values(1, 1);
 insert into movie_genre(movie_id, genre_id) values(2, 1);

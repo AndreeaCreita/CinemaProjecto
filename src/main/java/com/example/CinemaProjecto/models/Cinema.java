@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -15,7 +16,7 @@ import java.util.List;
 @Table
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cinema {
+public class Cinema implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +31,14 @@ public class Cinema {
     @OneToMany(mappedBy = "cinema")
     private List<Ticket> tickets;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "cinema_movie",
-            joinColumns = @JoinColumn(name = "cinema_id"),
-            inverseJoinColumns = @JoinColumn(name = "movie_id")
-    )
-    private List<Movie> movies;
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "cinema_movie",
+//            joinColumns = @JoinColumn(name = "cinema_id"),
+//            inverseJoinColumns = @JoinColumn(name = "movie_id")
+//    )
+//    private List<Movie> movies;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cinema")
+    private List<CinemaMovie> cinemaMovies;
 }

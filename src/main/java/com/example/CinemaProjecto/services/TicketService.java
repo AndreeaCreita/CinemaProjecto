@@ -5,4 +5,5 @@ import com.example.CinemaProjecto.dtos.TicketDto;
 
 public interface TicketService {
     TicketDto createTicket(RequestTicketDto requestTicketDto);
+    void cancelTicket(Long ticketId);
 }

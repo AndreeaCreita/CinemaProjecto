@@ -1,6 +1,6 @@
 package com.example.CinemaProjecto.services.implementations;
 
-import com.example.CinemaProjecto.advice.NotFoundException;
+import com.example.CinemaProjecto.exceptions.NotFoundException;
 import com.example.CinemaProjecto.dtos.CinemaDto;
 import com.example.CinemaProjecto.models.Cinema;
 import com.example.CinemaProjecto.repositories.CinemaRepository;

@@ -23,3 +23,6 @@ insert into movie_genre(movie_id, genre_id) values(2, 1);
 insert into movie_genre(movie_id, genre_id) values(3, 1);
 insert into movie_genre(movie_id, genre_id) values(3, 3);
 insert into movie_genre(movie_id, genre_id) values(3, 2);
+
+insert into user(id, email, first_name, last_name) values(1, 'ce@email.com', 'taylor', 'swift');
+insert into user(id, email, first_name, last_name) values(2, 'ec@email.com', 'kanye', 'west');

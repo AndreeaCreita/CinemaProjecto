@@ -11,8 +11,4 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findByTitleContainingIgnoreCase(String name);
     @Query("SELECT m FROM Movie m JOIN m.genres g where g.name = :genre")
     List<Movie> findByGenre(String genre);
-
-
-    @Query("SELECT m FROM Movie m JOIN m.cinemaMovies cm where cm.cinema.name = :cinema")
-    List<Movie> findByCinema(String cinema);
 }

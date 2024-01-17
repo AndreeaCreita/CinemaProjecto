@@ -1,4 +1,4 @@
-package com.example.CinemaProjecto.advice;
+package com.example.CinemaProjecto.exceptions;
 
 import lombok.Data;
 

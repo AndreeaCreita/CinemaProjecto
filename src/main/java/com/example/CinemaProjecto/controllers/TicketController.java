@@ -1,7 +1,7 @@
 package com.example.CinemaProjecto.controllers;
 
-import com.example.CinemaProjecto.dtos.MovieDto;
-import com.example.CinemaProjecto.dtos.RequestTicketDto;
+import com.example.CinemaProjecto.dtos.RequestCreateTicketDto;
+import com.example.CinemaProjecto.dtos.RequestUpdateTicketDto;
 import com.example.CinemaProjecto.dtos.TicketDto;
 import com.example.CinemaProjecto.services.TicketService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,7 +33,7 @@ public class TicketController {
                     responseCode = "201",
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = MovieDto.class)
+                            schema = @Schema(implementation = TicketDto.class)
                     )
             ),
             @ApiResponse(
@@ -53,9 +53,9 @@ public class TicketController {
     })
     @PostMapping("/buy")
     public ResponseEntity<TicketDto> buyTicket(
-        @Valid @RequestBody RequestTicketDto requestTicketDto
+        @Valid @RequestBody RequestCreateTicketDto requestCreateTicketDto
     ) {
-        return new ResponseEntity<>(service.createTicket(requestTicketDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.createTicket(requestCreateTicketDto), HttpStatus.CREATED);
     }
 
     @Operation(description = "Cancel a ticket")
@@ -84,5 +84,30 @@ public class TicketController {
         @Min(1) @PathVariable @Parameter(description = "Ticket ID") Long id
     ) {
         service.cancelTicket(id);
+    }
+
+    @Operation(description = "Update a ticket date")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    description = "Ticket updated",
+                    responseCode = "200",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = TicketDto.class)
+                    )
+            ),
+            @ApiResponse(
+                    description = "Ticket not found",
+                    responseCode = "404",
+                    content = @Content(
+                            mediaType = MediaType.TEXT_PLAIN_VALUE
+                    )
+            )
+    })
+    @PutMapping("/update")
+    public ResponseEntity<TicketDto> modifyTicketDate(
+        @Valid @RequestBody RequestUpdateTicketDto requestUpdateTicketDto
+    ) {
+        return new ResponseEntity<>(service.updateTicketDate(requestUpdateTicketDto.getTicketId(), requestUpdateTicketDto.getMovieTime()), HttpStatus.OK);
     }
 }

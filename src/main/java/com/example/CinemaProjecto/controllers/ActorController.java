@@ -1,7 +1,8 @@
 package com.example.CinemaProjecto.controllers;
 
-import com.example.CinemaProjecto.dtos.UserDto;
-import com.example.CinemaProjecto.services.UserService;
+import com.example.CinemaProjecto.dtos.ActorDto;
+import com.example.CinemaProjecto.dtos.MovieDto;
+import com.example.CinemaProjecto.services.ActorService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -9,7 +10,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,33 +19,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Min;
+import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/actor")
 @RequiredArgsConstructor
-public class UserController {
-    private final UserService userService;
+public class ActorController {
+    private final ActorService actorService;
 
-    @Operation(description = "get user by id")
+    @Operation(description = "get movie by id")
     @ApiResponses(value = {
             @ApiResponse(
-                    description = "The user",
+                    description = "The movie",
                     responseCode = "200",
                     content = @Content(
                             mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = UserDto.class)
+                            schema = @Schema(implementation = MovieDto.class)
                     )
             ),
             @ApiResponse(
-                    description = "User not found",
+                    description = "Movie not found",
                     responseCode = "404",
                     content = @Content(
                             mediaType = MediaType.TEXT_PLAIN_VALUE
                     )
             )
     })
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserDto> getUser(@PathVariable @Min(1) @Parameter(description = "User id") Long userId) {
-        return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
+    @GetMapping("/movie/{id}")
+    public ResponseEntity<List<ActorDto>> getActorsByMovie(
+        @PathVariable @Min(1) @Parameter(description = "Movie ID") Long id
+    ) {
+        return new ResponseEntity<>(actorService.getActorsByMovie(id), HttpStatus.OK);
     }
 }

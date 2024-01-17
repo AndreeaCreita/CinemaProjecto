@@ -1,7 +1,7 @@
 package com.example.CinemaProjecto.services.implementations;
 
 import com.example.CinemaProjecto.exceptions.NotFoundException;
-import com.example.CinemaProjecto.dtos.RequestTicketDto;
+import com.example.CinemaProjecto.dtos.RequestCreateTicketDto;
 import com.example.CinemaProjecto.dtos.TicketDto;
 import com.example.CinemaProjecto.exceptions.NoSeatsException;
 import com.example.CinemaProjecto.exceptions.TicketNotCancellable;
@@ -26,21 +26,21 @@ public class TicketServiceImpl implements TicketService {
 
 
     @Override
-    public TicketDto createTicket(RequestTicketDto requestTicketDto) {
+    public TicketDto createTicket(RequestCreateTicketDto requestCreateTicketDto) {
         var cinemaMovie = cinemaMovieRepository.findByCinemaIdAndMovieId(
-            requestTicketDto.getCinemaId(), requestTicketDto.getMovieId()
+            requestCreateTicketDto.getCinemaId(), requestCreateTicketDto.getMovieId()
         );
         if (cinemaMovie == null) {
             throw new NotFoundException("Cinema/movie combination not found");
         }
-        var user = userRepository.findById(requestTicketDto.getUserId()).orElseThrow(() ->
+        var user = userRepository.findById(requestCreateTicketDto.getUserId()).orElseThrow(() ->
                 new NotFoundException("User not found"));
-        var takenSeats = ticketRepository.getTakenSeats(requestTicketDto.getCinemaId(), requestTicketDto.getMovieId());
+        var takenSeats = ticketRepository.getTakenSeats(requestCreateTicketDto.getCinemaId(), requestCreateTicketDto.getMovieId());
         if (Objects.equals(takenSeats, cinemaMovie.getSeats())) {
             throw new NoSeatsException("All seats are taken. Please choose another movie/cinema");
         }
         var ticket = ticketRepository.save(
-                new Ticket(null, user, cinemaMovie.getMovie(), cinemaMovie.getCinema(), requestTicketDto.getMovieTime())
+                new Ticket(null, user, cinemaMovie.getMovie(), cinemaMovie.getCinema(), requestCreateTicketDto.getMovieTime())
         );
         return new TicketDto(
                 ticket.getId(),
@@ -59,5 +59,20 @@ public class TicketServiceImpl implements TicketService {
             throw new TicketNotCancellable("Ticket cannot be cancelled");
         }
         ticketRepository.delete(ticket);
+    }
+
+    @Override
+    public TicketDto updateTicketDate(Long ticketId, LocalDateTime time) {
+        var ticket = ticketRepository.findById(ticketId).orElseThrow(() ->
+                new NotFoundException("Ticket not found"));
+        ticket.setDateTime(time);
+        var modifiedTicket = ticketRepository.save(ticket);
+        return new TicketDto(
+            ticket.getId(),
+            ticket.getUser().getEmail(),
+            ticket.getMovie().getTitle(),
+            ticket.getCinema().getName(),
+            ticket.getDateTime()
+        );
     }
 }

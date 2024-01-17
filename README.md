@@ -8,14 +8,16 @@ The application, also, is authentication free, which means users can get tickets
 1. Users should be able to view the cinemas.
 2. Users should be able to select a cinema.
 3. Users should be able to view all the movies from a cinema.
-4. Users should be able to view the movie's informations after selecting it.
+4. Users should be able to view the movie's information after selecting it.
 5. Users should be able to buy one or more tickets for a movie at time.
 6. In order to find a specific movie, users should be able to filter through movies by specifying the name of the movie.
 7. To find movies from a specific category, users should be able to filter by category.
 8. To see which actors plays in a movie, a movie should display all of them.
-9. Users should be able to pick date and time for a movie.
+9. Users should be able to pick date and time for a movie, and change it afterward.
 10. Users should be able to see how many seats are left to a specific movie.
 11. Tickets should display the user's first and last name, the movie, the cinema and the time and date.
+12. The number of seats should be changeable.
+13. Tickets should be cancellable if action is performed before the screening.
 
 ## Five Main Features
 

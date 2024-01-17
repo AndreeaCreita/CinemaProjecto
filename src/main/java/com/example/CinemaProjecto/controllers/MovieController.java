@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @RestController
@@ -52,9 +53,21 @@ public class MovieController {
     ){
         return new ResponseEntity<>(service.getById(id), HttpStatus.OK);
     }
+
+    @Operation(description = "get movies by genre")
+    @ApiResponses(value = {
+        @ApiResponse(
+                description = "Movies filtered by genre",
+                responseCode = "200",
+                content = @Content(
+                        mediaType = MediaType.APPLICATION_JSON_VALUE,
+                        array = @ArraySchema(schema = @Schema(implementation = MovieDto.class))
+                )
+        )
+    })
     @GetMapping("/genre/{genre}")
     public ResponseEntity<List<MovieDto>> getByGenre(
-        @PathVariable String genre
+        @PathVariable @NotBlank @Parameter(description = "Genre to filter by") String genre
     ) {
         return new ResponseEntity<>(service.getMoviesByGenre(genre), HttpStatus.OK);
     }

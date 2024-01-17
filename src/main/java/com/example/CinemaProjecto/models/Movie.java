@@ -46,14 +46,6 @@ public class Movie implements Serializable {
     @OneToMany(mappedBy = "movie")
     private List<Ticket> tickets;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "cinema_movie",
-//            joinColumns = @JoinColumn(name = "movie_id"),
-//            inverseJoinColumns = @JoinColumn(name = "cinema_id")
-//    )
-//    private List<Cinema> cinemas;
-
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "movie")
     private List<CinemaMovie> cinemaMovies;

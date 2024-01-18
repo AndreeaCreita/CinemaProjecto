@@ -27,8 +27,7 @@ public class MovieServiceImpl implements MovieService {
                         m.getTitle(),
                         m.getDescription(),
                         m.getGenres().stream().map(Genre::getName).toList(),
-                        null,   //todo georgian sa rezolvi aici
-//                        m.getCinemas().stream().map(Cinema::getName).toList()
+                        m.getActors().stream().map(Actor::getName).toList(),
                         m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
                 )).toList();
 
@@ -43,14 +42,9 @@ public class MovieServiceImpl implements MovieService {
                 m.getTitle(),
                 m.getDescription(),
                 m.getGenres().stream().map(Genre::getName).toList(),
-                null,
+                m.getActors().stream().map(Actor::getName).toList(),
                 m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
         );
-    }
-
-    @Override
-    public List<MovieDto> getMoviesByName(String name) {
-        return null;
     }
 
     @Override
@@ -61,7 +55,7 @@ public class MovieServiceImpl implements MovieService {
                         m.getTitle(),
                         m.getDescription(),
                         m.getGenres().stream().map(Genre::getName).toList(),
-                        null,
+                        m.getActors().stream().map(Actor::getName).toList(),
                         m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
                 )).toList();
     }

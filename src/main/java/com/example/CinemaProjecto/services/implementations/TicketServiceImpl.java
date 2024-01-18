@@ -68,11 +68,11 @@ public class TicketServiceImpl implements TicketService {
         ticket.setDateTime(time);
         var modifiedTicket = ticketRepository.save(ticket);
         return new TicketDto(
-            ticket.getId(),
-            ticket.getUser().getEmail(),
-            ticket.getMovie().getTitle(),
-            ticket.getCinema().getName(),
-            ticket.getDateTime()
+            modifiedTicket.getId(),
+            modifiedTicket.getUser().getEmail(),
+            modifiedTicket.getMovie().getTitle(),
+            modifiedTicket.getCinema().getName(),
+            modifiedTicket.getDateTime()
         );
     }
 }

@@ -81,6 +81,13 @@ public class MovieController {
                         mediaType = MediaType.APPLICATION_JSON_VALUE,
                         array = @ArraySchema(schema = @Schema(implementation = MovieDto.class))
                     )
+            ),
+            @ApiResponse(
+                    description = "Cinema not found",
+                    responseCode = "404",
+                    content = @Content(
+                            mediaType = MediaType.TEXT_PLAIN_VALUE
+                    )
             )
     })
     @GetMapping("/cinema/{cinema}")

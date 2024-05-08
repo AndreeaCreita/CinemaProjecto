@@ -11,11 +11,13 @@ import com.example.CinemaProjecto.repositories.TicketRepository;
 import com.example.CinemaProjecto.repositories.UserRepository;
 import com.example.CinemaProjecto.services.TicketService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TicketServiceImpl implements TicketService {
@@ -42,6 +44,7 @@ public class TicketServiceImpl implements TicketService {
         var ticket = ticketRepository.save(
                 new Ticket(null, user, cinemaMovie.getMovie(), cinemaMovie.getCinema(), requestCreateTicketDto.getMovieTime())
         );
+        log.info("Ticket added in db, ticket id: " + ticket.getId());
         return new TicketDto(
                 ticket.getId(),
                 user.getEmail(),
@@ -58,7 +61,9 @@ public class TicketServiceImpl implements TicketService {
         if (ticket.getDateTime().isBefore(LocalDateTime.now())) {
             throw new TicketNotCancellable("Ticket cannot be cancelled");
         }
+        log.info("Ticket with id " + ticket.getId() + " deleted from db");
         ticketRepository.delete(ticket);
+
     }
 
     @Override
@@ -67,6 +72,7 @@ public class TicketServiceImpl implements TicketService {
                 new NotFoundException("Ticket not found"));
         ticket.setDateTime(time);
         var modifiedTicket = ticketRepository.save(ticket);
+        log.info("Ticket updated in db, ticket id: " + ticket.getId());
         return new TicketDto(
             modifiedTicket.getId(),
             modifiedTicket.getUser().getEmail(),

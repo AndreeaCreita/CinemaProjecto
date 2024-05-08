@@ -5,10 +5,7 @@ import com.example.CinemaProjecto.controllers.CinemaController;
 import com.example.CinemaProjecto.controllers.TicketController;
 import com.example.CinemaProjecto.dtos.RequestCreateTicketDto;
 import com.example.CinemaProjecto.exceptions.NoSeatsException;
-import com.example.CinemaProjecto.models.Cinema;
-import com.example.CinemaProjecto.models.CinemaMovie;
-import com.example.CinemaProjecto.models.Movie;
-import com.example.CinemaProjecto.models.User;
+import com.example.CinemaProjecto.models.*;
 import com.example.CinemaProjecto.services.implementations.TicketServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -57,6 +54,8 @@ public class TicketControllerTests {
 
     private CinemaMovie cinemaMovie;
 
+    private Adresa adresa;
+
     @BeforeEach
     public void before() {
         mvc = MockMvcBuilders.webAppContextSetup(webAppContext).build();
@@ -66,7 +65,10 @@ public class TicketControllerTests {
                 null,
                 null
         );
-        cinemaMovie.setCinema(new Cinema(1L, "Cinema", "Afi", List.of(), List.of()));
+        adresa = Adresa.builder()
+                .id(1L)
+                .build();
+        cinemaMovie.setCinema(new Cinema(1L, "Cinema", "Afi", List.of(), List.of(), adresa));
         cinemaMovie.setMovie(new Movie(1L, "Shrek", "Ogre", List.of(), List.of(), List.of(), List.of(cinemaMovie)));
     }
 

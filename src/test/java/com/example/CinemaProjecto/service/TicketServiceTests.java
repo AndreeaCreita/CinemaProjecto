@@ -47,7 +47,7 @@ public class TicketServiceTests {
                 null,
                 null
         );
-        cinemaMovie.setCinema(new Cinema(1L, "Cinema", "Afi", List.of(), List.of()));
+        cinemaMovie.setCinema(new Cinema(1L, "Cinema", "Afi", List.of(), List.of(), new Adresa()));
         cinemaMovie.setMovie(new Movie(1L, "Shrek", "Ogre", List.of(), List.of(), List.of(), List.of(cinemaMovie)));
     }
 

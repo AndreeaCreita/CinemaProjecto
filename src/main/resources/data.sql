@@ -35,3 +35,5 @@ insert into actor(id, name) values(4, 'Zendaya');
 insert into movie_actor(movie_id, actor_id) values(1, 1);
 insert into movie_actor(movie_id, actor_id) values(1, 4);
 insert into movie_actor(movie_id, actor_id) values(2, 3);
+
+-- insert into adresa(id, numar, oras, strada, tara, codpostal, cinema_id) values(1,'12A', 'Bucuresti','Str. Studentilor','Romania', 1234566, 1);

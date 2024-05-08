@@ -41,4 +41,7 @@ public class Cinema implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cinema")
     private List<CinemaMovie> cinemaMovies;
+
+    @OneToOne(mappedBy = "cinema", cascade = CascadeType.ALL)
+    private Adresa adresa;
 }

@@ -1,6 +1,7 @@
 package com.example.CinemaProjecto.service;
 
 import com.example.CinemaProjecto.exceptions.NotFoundException;
+import com.example.CinemaProjecto.models.Adresa;
 import com.example.CinemaProjecto.models.Cinema;
 import com.example.CinemaProjecto.repositories.CinemaRepository;
 import com.example.CinemaProjecto.services.implementations.CinemaServiceImpl;
@@ -11,6 +12,8 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
 
@@ -19,6 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
+@DataJpaTest
 public class CinemaServiceTests {
     @InjectMocks
     private CinemaServiceImpl service;
@@ -43,7 +48,7 @@ public class CinemaServiceTests {
     @DisplayName("CinemaService unit test: return all cinemas")
     public void getAll_returnListOfCinemas() {
         given(repository.findAll()).willReturn(
-                List.of(new Cinema(1L, "Cinema City", "Afi", List.of(), List.of()))
+                List.of(new Cinema(1L, "Cinema City", "Afi", List.of(), List.of(), new Adresa()))
         );
 
         var cinemas = service.getAll();

@@ -8,10 +8,11 @@ import com.example.CinemaProjecto.repositories.CinemaRepository;
 import com.example.CinemaProjecto.repositories.MovieRepository;
 import com.example.CinemaProjecto.services.MovieService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MovieServiceImpl implements MovieService {
@@ -21,15 +22,20 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieDto> getAll() {
-        return movieRepository.findAll().stream().map(m ->
-                new MovieDto(
-                        m.getId(),
-                        m.getTitle(),
-                        m.getDescription(),
-                        m.getGenres().stream().map(Genre::getName).toList(),
-                        m.getActors().stream().map(Actor::getName).toList(),
-                        m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
-                )).toList();
+        return movieRepository.findAll().stream().map(m -> {
+            // Log each movie title
+            log.info("Processing movie from repository, movie title: " + m.getTitle());
+
+            // Return a new MovieDto object
+            return new MovieDto(
+                    m.getId(),
+                    m.getTitle(),
+                    m.getDescription(),
+                    m.getGenres().stream().map(Genre::getName).toList(),
+                    m.getActors().stream().map(Actor::getName).toList(),
+                    m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
+            );
+        }).toList();
 
     }
 
@@ -37,6 +43,7 @@ public class MovieServiceImpl implements MovieService {
     public MovieDto getById(Long id) {
         Movie m = movieRepository.findById(id).orElseThrow(() ->
                 new NotFoundException("Movie not found"));
+        log.info("Get movie from repository, movie id: " + m.getId());
         return new MovieDto(
                 m.getId(),
                 m.getTitle(),
@@ -49,15 +56,18 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public List<MovieDto> getMoviesByGenre(String genre) {
-        return movieRepository.findByGenre(genre).stream().map(m ->
-                new MovieDto(
-                        m.getId(),
-                        m.getTitle(),
-                        m.getDescription(),
-                        m.getGenres().stream().map(Genre::getName).toList(),
-                        m.getActors().stream().map(Actor::getName).toList(),
-                        m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
-                )).toList();
+        return movieRepository.findByGenre(genre).stream().map(m -> {
+
+            log.info("Processing movie for genre '" + genre + "', movie ID: " + m.getId() + ", movie title: " + m.getTitle());
+            return new MovieDto(
+                    m.getId(),
+                    m.getTitle(),
+                    m.getDescription(),
+                    m.getGenres().stream().map(Genre::getName).toList(),
+                    m.getActors().stream().map(Actor::getName).toList(),
+                    m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
+            );
+        }).toList();
     }
 
 

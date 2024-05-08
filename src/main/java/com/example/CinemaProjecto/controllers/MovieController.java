@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/movies")
 @RequiredArgsConstructor
-public class MovieController {
+public class  MovieController {
     private final MovieService service;
 
     @Operation(description = "get movie by id")

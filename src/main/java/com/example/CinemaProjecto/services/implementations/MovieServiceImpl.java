@@ -82,6 +82,7 @@ public class MovieServiceImpl implements MovieService {
             var movie = cm.getMovie();
             var movieCinemas = cinemaMovieRepository.findByMovieId(movie.getId())
                     .stream().map(Cinema::getName).toList();
+            log.info("Processing movie for cinema '" + cinemaName + "', movie ID: " + movie.getId() + ", movie title: " + movie.getTitle());
             return new MovieDto(movie.getId(), movie.getTitle(), movie.getDescription(), movie.getGenres().stream().map(Genre::getName).toList(),
                     movie.getActors().stream().map(Actor::getName).toList(), movieCinemas);
         }).toList();

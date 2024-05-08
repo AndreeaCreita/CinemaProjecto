@@ -1,5 +1,6 @@
 package com.example.CinemaProjecto.service;
 
+import com.example.CinemaProjecto.dtos.MovieDto;
 import com.example.CinemaProjecto.exceptions.NotFoundException;
 import com.example.CinemaProjecto.models.*;
 import com.example.CinemaProjecto.repositories.CinemaMovieRepository;
@@ -21,6 +22,13 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.BDDMockito.given;
+
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,13 +58,25 @@ public class MovieServiceTests {
 
     @Test
     @DisplayName("MovieService unit test: return all movies")
-    public void getAll_returnListOfMovies() {
-        given(movieRepository.findAll()).willReturn(
-                List.of(movie)
-        );
-        var movies = service.getAll();
-        assertEquals(movie.getTitle(), movies.get(0).getTitle());
-        assertEquals(movie.getId(), movies.get(0).getId());
+    public void getALL_returnListOfMovies() {
+        // Prepare data and mock responses
+        Movie movie = new Movie();  // Assume Movie is a proper entity class
+        movie.setTitle("Example Movie");
+        movie.setId(1L);
+
+        List<Movie> allMovies = List.of(movie);
+        Page<Movie> pagedResponse = new PageImpl<>(allMovies);
+
+        Pageable pageable = PageRequest.of(0, 10); // Example pageable
+        given(movieRepository.findAll(pageable)).willReturn(pagedResponse);
+
+        // Execute
+        Page<MovieDto> movies = service.getAll(pageable);
+
+        // Assert
+        assertEquals(1, movies.getTotalElements());
+        assertEquals(movie.getTitle(), movies.getContent().get(0).getTitle());
+        assertEquals(movie.getId(), movies.getContent().get(0).getId());
     }
 
     @Test

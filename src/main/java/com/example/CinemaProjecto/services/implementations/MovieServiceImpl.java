@@ -1,5 +1,8 @@
 package com.example.CinemaProjecto.services.implementations;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.example.CinemaProjecto.exceptions.NotFoundException;
 import com.example.CinemaProjecto.dtos.MovieDto;
 import com.example.CinemaProjecto.models.*;
@@ -21,22 +24,15 @@ public class MovieServiceImpl implements MovieService {
     private final CinemaRepository cinemaRepository;
 
     @Override
-    public List<MovieDto> getAll() {
-        return movieRepository.findAll().stream().map(m -> {
-            // Log each movie title
-            log.info("Processing movie from repository, movie title: " + m.getTitle());
-
-            // Return a new MovieDto object
-            return new MovieDto(
-                    m.getId(),
-                    m.getTitle(),
-                    m.getDescription(),
-                    m.getGenres().stream().map(Genre::getName).toList(),
-                    m.getActors().stream().map(Actor::getName).toList(),
-                    m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
-            );
-        }).toList();
-
+    public Page<MovieDto> getAll(Pageable pageable) {
+        return movieRepository.findAll(pageable).map(m -> new MovieDto(
+                m.getId(),
+                m.getTitle(),
+                m.getDescription(),
+                m.getGenres().stream().map(Genre::getName).toList(),
+                m.getActors().stream().map(Actor::getName).toList(),
+                m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
+        ));
     }
 
     @Override
@@ -87,4 +83,6 @@ public class MovieServiceImpl implements MovieService {
                     movie.getActors().stream().map(Actor::getName).toList(), movieCinemas);
         }).toList();
     }
+
+
 }

@@ -22,7 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotBlank;
 import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
+import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Sort;
 @RestController
 @RequestMapping("/movies")
 @RequiredArgsConstructor
@@ -96,4 +100,25 @@ public class  MovieController {
             ) {
         return new ResponseEntity<>(service.getMoviesByCinema(cinema), HttpStatus.OK);
     }
+
+    @Operation(description = "Get all movies with pagination and sorting")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    description = "Paginated list of all movies",
+                    responseCode = "200",
+                    content = @Content(
+                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                            schema = @Schema(implementation = Page.class)
+                    )
+            )
+    })
+
+    @GetMapping("/all")
+    public ResponseEntity<Page<MovieDto>> getAllMovies(
+            @PageableDefault(size = 10, sort = "title", direction = Sort.Direction.ASC) Pageable pageable
+    ) {
+        Page<MovieDto> movies = service.getAll(pageable);
+        return new ResponseEntity<>(movies, HttpStatus.OK);
+    }
+
 }

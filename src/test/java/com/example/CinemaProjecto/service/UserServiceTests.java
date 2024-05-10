@@ -16,7 +16,6 @@ import org.springframework.test.context.ActiveProfiles;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 @ActiveProfiles("test")
-@DataJpaTest
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTests {
 

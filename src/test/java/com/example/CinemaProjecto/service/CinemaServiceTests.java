@@ -23,7 +23,6 @@ import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
 @ActiveProfiles("test")
-@DataJpaTest
 public class CinemaServiceTests {
     @InjectMocks
     private CinemaServiceImpl service;

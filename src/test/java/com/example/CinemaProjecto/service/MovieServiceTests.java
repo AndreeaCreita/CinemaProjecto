@@ -34,7 +34,6 @@ import org.springframework.test.context.ActiveProfiles;
 
 import static org.mockito.BDDMockito.given;
 @ActiveProfiles("test")
-@DataJpaTest
 @ExtendWith(MockitoExtension.class)
 public class MovieServiceTests {
 

@@ -47,8 +47,8 @@ insert into movie_genre(movie_id, genre_id) values(7, 5);
 insert into movie_genre(movie_id, genre_id) values(8, 6);
 
 
-insert into user(id, email, first_name, last_name) values(1, 'ce@email.com', 'taylor', 'swift');
-insert into user(id, email, first_name, last_name) values(2, 'ec@email.com', 'kanye', 'west');
+insert into "user"( email, first_name, last_name) values( 'ce@email.com', 'taylor', 'swift');
+insert into "user"( email, first_name, last_name) values( 'ec@email.com', 'kanye', 'west');
 
 insert into actor(id, name) values(1, 'brad pitt');
 insert into actor(id, name) values(2, 'Johnny Depp');

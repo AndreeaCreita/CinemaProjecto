@@ -6,7 +6,6 @@ import com.example.CinemaProjecto.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 

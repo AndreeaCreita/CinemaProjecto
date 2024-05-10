@@ -88,6 +88,15 @@
 			<version>1.4.200</version> <!-- Make sure to use the latest or a compatible version -->
 		</dependency>
 
+
+		<!-- Thymeleaf dependancy -->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<!-- Thymeleaf dependancy -->
+
 	</dependencies>
 
 	<build>

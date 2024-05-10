@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${movie.title}">Movie Title</title>
+</head>
+<body>
+<h1 th:text="${movie.title}">Movie Title</h1>
+<p>Description: <span th:text="${movie.description}">Movie Description</span></p>
+<p>Genres: <span th:text="${#strings.arrayJoin(movie.genres, ', ')}">Genres List</span></p>
+<p>Actors: <span th:text="${#strings.arrayJoin(movie.actors, ', ')}">Actors List</span></p>
+<p>Cinemas: <span th:text="${#strings.arrayJoin(movie.cinemas, ', ')}">Cinemas List</span></p>
+<a href="/movies/all">Back to All Movies</a>
+</body>
+</html>

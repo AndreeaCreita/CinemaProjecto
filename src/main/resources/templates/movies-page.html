@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Movies</title>
+</head>
+<body>
+<h1>All Movies</h1>
+<div th:each="movie : ${page.content}">
+    <h2 th:text="${movie.title}"></h2>
+    <p th:text="${movie.description}"></p>
+    <!-- Add more details as needed -->
+    <a th:href="@{/movies/view/{id}(id=${movie.id})}">View Details</a>
+</div>
+<div>
+    <ul>
+        <li th:if="${page.hasPrevious()}"><a th:href="@{/movies/all(page=${page.number - 1})}">Previous</a></li>
+        <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+            <a th:href="@{/movies/all(page=${i})}" th:text="${i + 1}">Page number</a>
+        </li>
+        <li th:if="${page.hasNext()}"><a th:href="@{/movies/all(page=${page.number + 1})}">Next</a></li>
+    </ul>
+</div>
+</body>
+</html>

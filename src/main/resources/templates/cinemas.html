@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Cinemas</title>
+</head>
+<body>
+<h1>List of Cinemas</h1>
+<div th:each="cinema : ${cinemas}">
+    <p>
+        <a th:href="@{|/cinemas/view/${cinema.id}|}" th:text="${cinema.name}">Cinema Name</a>
+    </p>
+</div>
+</body>
+</html>

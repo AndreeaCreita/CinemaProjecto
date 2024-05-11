@@ -19,6 +19,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("tickets")
@@ -111,5 +113,33 @@ public class TicketController {
         @Valid @RequestBody RequestUpdateTicketDto requestUpdateTicketDto
     ) {
         return new ResponseEntity<>(service.updateTicketDate(requestUpdateTicketDto.getTicketId(), requestUpdateTicketDto.getMovieTime()), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/getAll")
+    @Operation(summary = "Get all tickets", description = "Retrieve a list of all tickets")
+    @ApiResponse(responseCode = "200", description = "Successful retrieval",
+            content = @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = TicketDto.class)))
+    public ResponseEntity<List<TicketDto>> getAllTickets() {
+        List<TicketDto> tickets = service.getAllTickets();
+        return ResponseEntity.ok(tickets);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get a ticket by ID", description = "Retrieve a ticket by its ID")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Ticket found",
+                    content = @Content(schema = @Schema(implementation = TicketDto.class))),
+            @ApiResponse(responseCode = "404", description = "Ticket not found",
+                    content = @Content)
+    })
+    public ResponseEntity<TicketDto> getTicketById(@PathVariable @Min(1) Long id) {
+        TicketDto ticket = service.getTicketById(id);
+        if (ticket != null) {
+            return ResponseEntity.ok(ticket);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

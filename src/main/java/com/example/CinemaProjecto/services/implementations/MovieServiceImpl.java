@@ -29,9 +29,9 @@ public class MovieServiceImpl implements MovieService {
                 m.getId(),
                 m.getTitle(),
                 m.getDescription(),
-                m.getGenres().stream().map(Genre::getName).toList(),
-                m.getActors().stream().map(Actor::getName).toList(),
-                m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList()
+                m.getGenres() != null ? m.getGenres().stream().map(Genre::getName).toList() : List.of(),
+                m.getActors() != null ? m.getActors().stream().map(Actor::getName).toList() : List.of(),
+                m.getCinemaMovies() != null ? m.getCinemaMovies().stream().map(cm -> cm.getCinema().getName()).toList() : List.of()
         ));
     }
 

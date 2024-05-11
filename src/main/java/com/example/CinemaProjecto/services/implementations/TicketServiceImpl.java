@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -81,4 +83,31 @@ public class TicketServiceImpl implements TicketService {
             modifiedTicket.getDateTime()
         );
     }
+
+    @Override
+    public List<TicketDto> getAllTickets() {
+        return ticketRepository.findAll().stream()
+                .map(ticket -> new TicketDto(
+                        ticket.getId(),
+                        ticket.getUser().getEmail(),
+                        ticket.getMovie().getTitle(),
+                        ticket.getCinema().getName(),
+                        ticket.getDateTime()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public TicketDto getTicketById(Long ticketId) {
+        Ticket ticket = ticketRepository.findById(ticketId)
+                .orElseThrow(() -> new NotFoundException("Ticket not found"));
+        return new TicketDto(
+                ticket.getId(),
+                ticket.getUser().getEmail(),
+                ticket.getMovie().getTitle(),
+                ticket.getCinema().getName(),
+                ticket.getDateTime()
+        );
+    }
+
 }

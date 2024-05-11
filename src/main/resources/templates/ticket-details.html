@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ticket Details</title>
+</head>
+<body>
+<h1>Ticket Details</h1>
+<div th:if="${ticket}">
+    <p>ID: <span th:text="${ticket.id}"></span></p>
+    <p>User Email: <span th:text="${ticket.userEmail}"></span></p>
+    <p>Movie Title: <span th:text="${ticket.movieTitle}"></span></p>
+    <p>Cinema Name: <span th:text="${ticket.cinemaName}"></span></p>
+    <p>Movie Time: <span th:text="${ticket.dateTime}"></span></p>
+
+    <h2>Update Ticket</h2>
+    <form th:action="@{/tickets/view/update}" method="post">
+        <input type="hidden" name="ticketId" th:value="${ticket.id}">
+        <label for="movieTime">New Movie Time:</label>
+        <input type="datetime-local" id="movieTime" name="movieTime" required>
+        <button type="submit">Update</button>
+    </form>
+
+    <h2>Cancel Ticket</h2>
+    <form th:action="@{/tickets/view/cancel/{id}(id=${ticket.id})}" method="post">
+        <button type="submit">Cancel Ticket</button>
+    </form>
+
+    <a th:href="@{/tickets/view/create}">Go Back to Create Ticket</a>
+</div>
+<div th:unless="${ticket}">
+    <p>No ticket found</p>
+</div>
+<div th:if="${message}">
+    <p th:text="${message}"></p>
+</div>
+</body>
+</html>

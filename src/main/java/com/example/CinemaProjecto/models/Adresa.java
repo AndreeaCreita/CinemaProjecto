@@ -20,19 +20,19 @@ public class Adresa {
     private Long id;
 
     @Column(nullable = false)
-    private String numar; // Number
+    private String numar;
 
     @Column(nullable = false)
-    private String oras; // City
+    private String oras;
 
     @Column(nullable = false)
-    private String strada; // Street
+    private String strada;
 
     @Column(nullable = false)
-    private String tara; // Country
+    private String tara;
 
     @Column(nullable = false)
-    private String codpostal; // Postal Code
+    private String codpostal;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cinema_id")

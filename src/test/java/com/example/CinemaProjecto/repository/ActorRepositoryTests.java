@@ -30,8 +30,7 @@ public class ActorRepositoryTests {
 
     @BeforeEach
     public void init() {
-        // Create and persist movie
-        movie = new Movie(); // Assume Movie class has proper annotations and fields
+        movie = new Movie();
         movie.setTitle("Example Movie");
 
         actor = Actor.builder()
@@ -41,9 +40,6 @@ public class ActorRepositoryTests {
         movie.setActors(List.of(actor));
         entityManager.persist(movie);
 
-
-        // Create and persist actor
-
         entityManager.persist(actor);
 
         entityManager.flush();
@@ -51,7 +47,6 @@ public class ActorRepositoryTests {
 
     @Test
     public void whenFindByMovie_thenReturnActors() {
-        // Testing the custom query
         Long movieId = movie.getId();
         var actors = actorRepository.findByMovie(movieId);
         assertThat(actors).isNotEmpty();

@@ -11,6 +11,6 @@ public interface TicketService {
     void cancelTicket(Long ticketId);
     TicketDto updateTicketDate(Long ticketId, LocalDateTime time);
 
-    List<TicketDto> getAllTickets();  // Retrieve all tickets
-    TicketDto getTicketById(Long ticketId);  // Retrieve a single ticket by ID
+    List<TicketDto> getAllTickets();
+    TicketDto getTicketById(Long ticketId);
 }

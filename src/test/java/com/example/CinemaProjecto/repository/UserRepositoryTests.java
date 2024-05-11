@@ -31,7 +31,6 @@ public class UserRepositoryTests {
 
     @BeforeEach
     public void init() {
-        // Creăm un utilizator de test folosind builder
         user = User.builder()
                 .email("user1@email.com")
                 .firstName("Emma")

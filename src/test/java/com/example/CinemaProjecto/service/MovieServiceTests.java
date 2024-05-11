@@ -62,21 +62,20 @@ public class MovieServiceTests {
     @Test
     @DisplayName("MovieService unit test: return all movies")
     public void getALL_returnListOfMovies() {
-        // Prepare data and mock responses
-        Movie movie = new Movie();  // Assume Movie is a proper entity class
+        Movie movie = new Movie();
         movie.setTitle("Example Movie");
         movie.setId(1L);
 
         List<Movie> allMovies = List.of(movie);
         Page<Movie> pagedResponse = new PageImpl<>(allMovies);
 
-        Pageable pageable = PageRequest.of(0, 10); // Example pageable
+        Pageable pageable = PageRequest.of(0, 10);
         given(movieRepository.findAll(pageable)).willReturn(pagedResponse);
 
-        // Execute
+
         Page<MovieDto> movies = service.getAll(pageable);
 
-        // Assert
+
         assertEquals(1, movies.getTotalElements());
         assertEquals(movie.getTitle(), movies.getContent().get(0).getTitle());
         assertEquals(movie.getId(), movies.getContent().get(0).getId());

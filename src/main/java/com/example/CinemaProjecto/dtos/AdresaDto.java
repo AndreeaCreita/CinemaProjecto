@@ -7,9 +7,9 @@ import lombok.Data;
 @AllArgsConstructor
 public class AdresaDto {
     private Long id;
-    private String numar; // Number
-    private String oras; // City
-    private String strada; // Street
-    private String tara; // Country
-    private Long codpostal; // Postal Code
+    private String numar;
+    private String oras;
+    private String strada;
+    private String tara;
+    private Long codpostal;
 }

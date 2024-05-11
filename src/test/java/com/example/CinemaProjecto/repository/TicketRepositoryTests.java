@@ -34,11 +34,11 @@ public class TicketRepositoryTests {
 
     @BeforeEach
     public void init() {
-        // Create and persist the dependencies
+
         user = User.builder()
                 .email("user@example.com")
-                .firstName("John") // Ensure firstName is not null
-                .lastName("Doe")   // Ensure lastName is not null
+                .firstName("John")
+                .lastName("Doe")
                 .build();
         entityManager.persist(user);
 
@@ -49,15 +49,14 @@ public class TicketRepositoryTests {
 
         movie = new Movie();
         movie.setTitle("Inception");
-        // Assume other necessary fields if there are any
+
         entityManager.persist(movie);
 
-        // Create and persist the Ticket
         ticket = Ticket.builder()
                 .user(user)
                 .movie(movie)
                 .cinema(cinema)
-                .dateTime(LocalDateTime.now().plusDays(1))  // Future date for ticket
+                .dateTime(LocalDateTime.now().plusDays(1))
                 .build();
         entityManager.persist(ticket);
         entityManager.flush();
@@ -65,10 +64,8 @@ public class TicketRepositoryTests {
 
     @Test
     public void whenFindById_thenReturnsTicket() {
-        // Fetch the ticket by ID from the database
         Ticket found = ticketRepository.findById(ticket.getId()).orElse(null);
 
-        // Validate the result
         assertThat(found).isNotNull();
         assertThat(found.getUser()).isEqualToComparingFieldByField(ticket.getUser());
         assertThat(found.getMovie()).isEqualToComparingFieldByField(ticket.getMovie());
@@ -78,11 +75,10 @@ public class TicketRepositoryTests {
 
     @Test
     public void whenDeleteById_thenRemovedFromDatabase() {
-        // Delete the ticket by ID
+
         ticketRepository.deleteById(ticket.getId());
         ticketRepository.flush();
 
-        // Validate the ticket is no longer in the database
         Ticket found = ticketRepository.findById(ticket.getId()).orElse(null);
         assertThat(found).isNull();
     }

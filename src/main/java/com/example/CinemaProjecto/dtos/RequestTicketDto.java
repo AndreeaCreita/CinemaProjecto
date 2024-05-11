@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 
-@NoArgsConstructor  // For frameworks and libraries requiring a no-args constructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class RequestTicketDto {
@@ -30,7 +30,5 @@ public class RequestTicketDto {
     @NotNull
     @Future
     private LocalDateTime movieTime;
-    // Constructor with parameters if needed for other parts of your application
-    // Additional constructor(s) for other needs
 
 }

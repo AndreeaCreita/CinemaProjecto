@@ -32,23 +32,20 @@ public class MovieRepositoryTests {
 
     @BeforeEach
     public void init() {
-        // Create and persist the genre
         Genre genre = new Genre();
         genre.setName("Drama");
         entityManager.persist(genre);
 
-        // Create and persist the movie
         movie = Movie.builder()
                 .title("The Shawshank Redemption")
                 .description("Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.")
-                .genres(List.of(genre)) // associate the genre with the movie
+                .genres(List.of(genre))
                 .actors(new ArrayList<>())
                 .tickets(new ArrayList<>())
                 .cinemaMovies(new ArrayList<>())
                 .build();
         entityManager.persist(movie);
 
-        // Flush changes to ensure they are applied to the database
         entityManager.flush();
     }
     @Test

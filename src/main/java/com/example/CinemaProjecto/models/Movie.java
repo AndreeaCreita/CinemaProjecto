@@ -23,7 +23,7 @@ public class Movie implements Serializable {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = true) // This allows the column to accept null values
+    @Column(nullable = true)
     private String description;
 
     @ManyToMany(cascade = CascadeType.ALL)

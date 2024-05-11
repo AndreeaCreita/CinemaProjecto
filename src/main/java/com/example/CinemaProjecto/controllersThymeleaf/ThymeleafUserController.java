@@ -21,10 +21,10 @@ public class ThymeleafUserController {
                 return "user-not-found";
             }
             model.addAttribute("user", user);
-            return "user";  // Directs to the user.html Thymeleaf template
+            return "user";
         } catch (Exception e) {
             model.addAttribute("errorMessage", "An error occurred while trying to fetch user details.");
-            return "error";  // Directs to the error.html Thymeleaf template
+            return "error";
         }
     }
 }

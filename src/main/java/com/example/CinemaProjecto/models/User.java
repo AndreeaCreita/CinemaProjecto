@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @Entity
 @Builder
-@Table(name = "\"user\"")  // Quoting the table name
+@Table(name = "\"user\"")
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {

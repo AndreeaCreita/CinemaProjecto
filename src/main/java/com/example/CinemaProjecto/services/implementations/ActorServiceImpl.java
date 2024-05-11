@@ -1,8 +1,13 @@
 package com.example.CinemaProjecto.services.implementations;
 
 import com.example.CinemaProjecto.dtos.ActorDto;
+import com.example.CinemaProjecto.dtos.MovieDto;
+import com.example.CinemaProjecto.dtos.TicketDto;
+import com.example.CinemaProjecto.dtos.UserDto;
 import com.example.CinemaProjecto.exceptions.NotFoundException;
+import com.example.CinemaProjecto.models.Actor;
 import com.example.CinemaProjecto.models.Movie;
+import com.example.CinemaProjecto.models.User;
 import com.example.CinemaProjecto.repositories.ActorRepository;
 import com.example.CinemaProjecto.repositories.MovieRepository;
 import com.example.CinemaProjecto.services.ActorService;
@@ -17,6 +22,15 @@ import java.util.List;
 public class ActorServiceImpl implements ActorService {
     private final ActorRepository actorRepository;
     private final MovieRepository movieRepository;
+
+
+    @Override
+    public ActorDto getActorById(Long actorId) {
+        Actor actor = actorRepository.findById(actorId).orElseThrow(() ->
+                new NotFoundException("Actor not found with id: " + actorId));
+
+        return new ActorDto(actor.getId(), actor.getName(), actor.getMovies().stream().map(Movie::getTitle).toList());
+    }
     @Override
     public List<ActorDto> getActorsByMovie(Long movieId) {
         var movie = movieRepository.findById(movieId).orElseThrow(() ->
@@ -34,4 +48,7 @@ public class ActorServiceImpl implements ActorService {
             );
         }).toList();
     }
+
+
+
 }

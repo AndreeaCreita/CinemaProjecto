@@ -44,7 +44,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @ContextConfiguration(classes = ActorController.class)
 @WebMvcTest(ActorController.class)
 @Import({ExceptionAdvice.class})
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 
 public class ActorControllerTests {
 

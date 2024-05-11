@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 public class CinemaServiceTests {
     @InjectMocks
     private CinemaServiceImpl service;

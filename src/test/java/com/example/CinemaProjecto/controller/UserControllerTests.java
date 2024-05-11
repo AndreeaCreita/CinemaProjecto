@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = UserController.class)
 @WebMvcTest(UserController.class)

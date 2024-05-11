@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = MovieController.class)
 @WebMvcTest(MovieController.class)
 @Import({ExceptionAdvice.class})
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 
 public class MovieControllerTests {
 

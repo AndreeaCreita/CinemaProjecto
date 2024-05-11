@@ -33,7 +33,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.mockito.BDDMockito.given;
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 @ExtendWith(MockitoExtension.class)
 public class MovieServiceTests {
 

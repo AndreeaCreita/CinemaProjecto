@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actor Profile</title>
+</head>
+<body>
+<h1>User Profile</h1>
+<div>
+    <p>ID: <span th:text="${actor.id}">Actor ID</span></p>
+    <p>Name: <span th:text="${actor.name}">Actor Name</span></p>
+    <p>Movies: <span th:text="${actor.movies}">Movies</span></p>
+</div>
+<a href="/actor/id">Back to Actor</a>
+</body>
+</html>

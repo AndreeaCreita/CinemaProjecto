@@ -25,7 +25,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 @ExtendWith(MockitoExtension.class)
 public class TicketServiceTests {
 

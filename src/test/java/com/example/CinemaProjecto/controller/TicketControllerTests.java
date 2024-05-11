@@ -39,7 +39,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import com.fasterxml.jackson.datatype.jsr310.*;
-@ActiveProfiles("test")
+@ActiveProfiles("h2")
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = TicketController.class)
 @WebMvcTest(TicketController.class)

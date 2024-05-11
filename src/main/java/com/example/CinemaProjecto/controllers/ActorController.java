@@ -27,6 +27,11 @@ import java.util.List;
 public class ActorController {
     private final ActorService actorService;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ActorDto> getActorById(@PathVariable Long id) {
+        return new ResponseEntity<>(actorService.getActorById(id), HttpStatus.OK);
+    }
+
     @Operation(description = "get movie by id")
     @ApiResponses(value = {
             @ApiResponse(

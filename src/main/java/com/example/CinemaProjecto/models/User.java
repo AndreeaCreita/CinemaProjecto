@@ -23,6 +23,8 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+
+    private String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Ticket> tickets;
 }

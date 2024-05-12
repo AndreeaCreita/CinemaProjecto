@@ -19,6 +19,28 @@ The application, also, is authentication free, which means users can get tickets
 12. The number of seats should be changeable.
 13. Tickets should be cancellable if action is performed before the screening.
 
+    
+## Application Details
+
+1. The application will meet the following criteria:
+
+2. Relationships between entities of all types will be created: @OneToOne, @OneToMany, @ManyToOne, @ManyToMany.
+
+3. All types of CRUD operations will be implemented.
+
+4. The application will be tested using profiles and two different databases, one of which for the testing stage can use an in-memory database (H2).
+
+5. Use unit tests/integration tests.
+
+6. Data from forms will be validated, and exceptions will be handled.
+
+7. Log-in features will be used. Optional aspects.
+
+8. Options for data pagination and sorting will be used.
+
+9. Spring Security will be included with minimal JDBC authentication.
+
+    
 ## Five Main Features
 
 ### Cinemas and Movies Exploration
@@ -57,4 +79,5 @@ Implement category-based filters to find movies by genre.
 2. Functionality: <br>
 Display information about purchased tickets (user's name, movie, cinema, date, time). <br>
 Show the number of seats reserved for each ticket.
+
 

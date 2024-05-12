@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Register Account</title>
+</head>
+<body>
+<h1>Create Your Account</h1>
+<form th:action="@{/register_handler}" method="post">
+  <div>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" placeholder="Enter your email" required/>
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Create a password" required/>
+  </div>
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required/>
+  </div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required/>
+  </div>
+  <div>
+    <input type="submit" value="Register"/>
+  </div>
+</form>
+</body>
+</html>

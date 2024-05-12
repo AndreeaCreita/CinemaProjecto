@@ -3,6 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${movie.title}">Movie Title</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 40px;
+            background-color: #fff0f6; /* Light pink background */
+            color: #333; /* Dark text for readability */
+        }
+        h1 {
+            color: #d789d7; /* Soft pink for headers */
+            margin-bottom: 20px;
+        }
+        p {
+            color: #6d6875; /* Soft purple text */
+            font-size: 16px; /* Legible text size */
+            line-height: 1.6; /* Comfortable line spacing */
+        }
+        span {
+            font-weight: bold; /* Bold for emphasis */
+        }
+        a, .button-link {
+            color: #ff467e; /* Vibrant pink for links */
+            text-decoration: none;
+            font-size: 16px; /* Consistent font size */
+            padding: 8px 16px;
+            display: inline-block;
+            background-color: #fee2f8; /* Light pink background for button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        a:hover, .button-link:hover {
+            text-decoration: underline;
+            color: #b455b6; /* Darker pink on hover */
+            background-color: #fcd3e1; /* Slightly darker pink background on hover */
+        }
+    </style>
 </head>
 <body>
 <h1 th:text="${movie.title}">Movie Title</h1>
@@ -10,6 +47,7 @@
 <p>Genres: <span th:text="${#strings.arrayJoin(movie.genres, ', ')}">Genres List</span></p>
 <p>Actors: <span th:text="${#strings.arrayJoin(movie.actors, ', ')}">Actors List</span></p>
 <p>Cinemas: <span th:text="${#strings.arrayJoin(movie.cinemas, ', ')}">Cinemas List</span></p>
-<a href="/movies/all">Back to All Movies</a>
+<a href="/movies/view/all">Back to All Movies</a>
+<a th:href="@{/tickets/view/create(movieId=${movie.id})}" class="button-link">Create a Ticket for this Movie</a>
 </body>
 </html>

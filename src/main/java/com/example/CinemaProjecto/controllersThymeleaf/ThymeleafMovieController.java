@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class ThymeleafMovieController {
         return "movie-list";
     }
 
+
     @GetMapping("/movies/view/all")
     public String getAllMovies(Model model, @PageableDefault(size = 5, sort = "title") Pageable pageable) {
         Page<MovieDto> movies = movieService.getAll(pageable);
@@ -54,4 +56,7 @@ public class ThymeleafMovieController {
         model.addAttribute("title", "All Movies");
         return "movies-page";
     }
+
+
+
 }

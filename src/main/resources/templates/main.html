@@ -3,45 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Cinema Projecto</title>
-    <!-- Bootstrap CSS for styling and responsive design -->
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css"/>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="/webjars/font-awesome/6.4.0/css/all.min.css"/>
     <style>
         body {
-            background-color: #f8f9fa; /* Lighter background to complement pink */
-            color: #495057; /* Dark gray text for better readability */
+            background-color: #F8E8F4; /* Softer pink background */
         }
         .navbar-custom {
-            background-color: #ff85a2; /* Soft pink background for the navbar */
+            background-color: #D291BC; /* Custom pink shade for navbar */
+            padding: 1rem 1rem; /* Consistent padding around */
         }
-        .btn-custom {
-            background-color: #ff4d6d; /* Vibrant pink buttons */
-            color: #ffffff;
-        }
-        .btn-custom:hover {
-            background-color: #ff2043; /* Darker pink on hover */
-            color: #ffffff;
-        }
-        .input-group-text {
-            background-color: #ff85a2; /* Soft pink background for input groups */
-            border: 1px solid #ff4d6d; /* Pink border for a cohesive look */
-            color: #ffffff;
-        }
-        .form-control {
-            border: 1px solid #ff85a2;
-        }
-        .nav-link {
-            color: #ffffff !important; /* Ensure nav links are white */
+        .navbar-brand, .nav-link {
+            color: #FFFFFF; /* White text for better contrast */
         }
         .nav-link:hover {
-            color: #f8f9fa !important; /* Lighter shade on hover for contrast */
+            color: #FADADD; /* Lighter pink for hover */
+        }
+        .container {
+            padding-top: 20px; /* Reduced space above the navbar */
+        }
+        .main-title {
+            margin-top: 20px; /* Added space between navbar and title */
+            color: #5D275D; /* Deeper purple for prominent display */
+        }
+        .btn-custom-pink {
+            background-color: #FADADD; /* Soft pink buttons */
+            border: none;
+            color: black;
+            margin-top: 50px;
+        }
+        .btn-custom-pink:hover {
+            background-color: #FBCCE7; /* Lighter pink on hover */
+            color: white;
+        }
+        .filter-section {
+            padding: 20px 0; /* Padding above and below the filter section */
+            background-color: #EED5EE; /* Light background for the filter section */
+            margin-top: 30px; /* Extra space above the filter section */
+        }
+        .input-group-text {
+            background-color: #FBCCE7; /* Lighter pink for input prepend */
+            border: 1px solid #D291BC; /* Border color matching the navbar */
+        }
+        .form-control {
+            border: 1px solid #D291BC; /* Ensuring consistent border styling */
         }
     </style>
+    <script>
+        function setFormAction() {
+            var form = document.getElementById('filterForm');
+            var cinemaName = document.getElementById('cinemaNameInput').value;
+            form.action = '/movies/cinema/view/' + encodeURIComponent(cinemaName);
+        }
+    </script>
 </head>
-<body>
-<div class="container mt-5">
-    <nav class="navbar navbar-expand-lg navbar-custom rounded">
+<body class="bg-light">
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-custom">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Cinema Projecto</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,32 +67,30 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="/tickets/view/create">Create Ticket</a>
+                    <a class="nav-link active" href="/tickets/view/create">Create Ticket</a>
                     <a class="nav-link" href="/cinemas/view/all">View Cinemas</a>
                 </div>
             </div>
         </div>
     </nav>
-    <h1 class="display-4 text-center">Welcome to Cinema Projecto!</h1>
+    <h1 class="text-center main-title">Welcome to Cinema Projecto!</h1>
     <p class="lead text-center">Your one-stop destination for booking cinema tickets and exploring movie schedules.</p>
-    <div class="d-flex justify-content-center mt-4">
-        <a href="/tickets/view/create" class="btn btn-custom mx-2">Book a Ticket</a>
-        <a href="/cinemas/view/all" class="btn btn-custom mx-2">Explore Cinemas</a>
-        <a href="/movies/view/all" class="btn btn-custom mx-2">View All Movies</a>
-    </div>
-    <div class="mt-4">
-        <h2 class="text-center">Filter Movies</h2>
-        <form th:action="@{/movies/view/all}" method="get" class="d-flex justify-content-center">
+
+    <div class="filter-section text-center">
+        <h2>Filter Movies</h2>
+        <form id="filterForm" onsubmit="setFormAction()" method="get">
             <div class="input-group mb-3 mx-2">
                 <span class="input-group-text" id="cinema-label">Cinema</span>
-                <input type="text" class="form-control" placeholder="Cinema Name" aria-label="Cinema" aria-describedby="cinema-label" name="cinemaName">
+                <input type="text" id="cinemaNameInput" class="form-control" placeholder="Enter cinema name" required>
             </div>
-            <div class="input-group mb-3 mx-2">
-                <span class="input-group-text" id="genre-label">Genre</span>
-                <input type="text" class="form-control" placeholder="Genre" aria-label="Genre" aria-describedby="genre-label" name="genre">
-            </div>
-            <button type="submit" class="btn btn-info">Filter</button>
+            <button type="submit" class="btn btn-custom-pink">Filter by Cinema</button>
         </form>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <a href="/tickets/view/create" class="btn btn-custom-pink mx-2">Book a Ticket</a>
+        <a href="/cinemas/view/all" class="btn btn-custom-pink mx-2">Explore Cinemas</a>
+        <a href="/movies/view/all" class="btn btn-custom-pink mx-2">View All Movies</a>
     </div>
 </div>
 

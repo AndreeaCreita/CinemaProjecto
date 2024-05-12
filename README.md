@@ -72,8 +72,8 @@ Show the number of seats reserved for each ticket.
 
 6. Data from forms will be validated, and exceptions will be handled.
 
-7.Log-in features will be used. Optional aspects.
+7. Log-in features will be used. Optional aspects.
 
-8.Options for data pagination and sorting will be used.
+8. Options for data pagination and sorting will be used.
 
-9.Spring Security will be included with minimal JDBC authentication.
+9. Spring Security will be included with minimal JDBC authentication.

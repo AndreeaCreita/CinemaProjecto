@@ -3,11 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Cinema Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fdf2f8; /* Light pink background */
+            margin: 40px;
+            color: #232129;
+        }
+        h1 {
+            color: #d53f8c; /* Strong pink color */
+            margin-bottom: 20px;
+        }
+        div {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #b83280; /* Deep pink for text */
+        }
+        span {
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 <h1 th:text="${cinema.name}">Cinema Name</h1>
 <div>
-    <p>Location: <span th:text="${cinema.location}"></span></p>
+    <p>Location: <span th:text="${cinema.location}">Cinema Location</span></p>
 </div>
 </body>
 </html>

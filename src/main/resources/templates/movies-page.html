@@ -3,21 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <title>All Movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {background-color: #f5f5f5;}
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .pagination {
+            list-style-type: none;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pagination li {
+            margin: 0 5px;
+        }
+        .pagination li a {
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
 <h1>All Movies</h1>
-<div th:each="movie : ${page.content}">
-    <h2 th:text="${movie.title}"></h2>
-    <p th:text="${movie.description}"></p>
-    <a th:href="@{/movies/view/{id}(id=${movie.id})}">View Details</a>
-</div>
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="movie : ${page.content}">
+        <td th:text="${movie.title}">Title</td>
+        <td th:text="${movie.description}">Description</td>
+        <td><a th:href="@{/movies/view/{id}(id=${movie.id})}">View Details</a></td>
+    </tr>
+    </tbody>
+</table>
 <div>
-    <ul>
-        <li th:if="${page.hasPrevious()}"><a th:href="@{/movies/all(page=${page.number - 1})}">Previous</a></li>
-        <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
-            <a th:href="@{/movies/all(page=${i})}" th:text="${i + 1}">Page number</a>
+    <ul class="pagination">
+        <li th:if="${page.hasPrevious()}">
+            <a th:href="@{/movies/view/all(page=${page.number - 1})}">Previous</a>
         </li>
-        <li th:if="${page.hasNext()}"><a th:href="@{/movies/all(page=${page.number + 1})}">Next</a></li>
+        <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+            <a th:href="@{/movies/view/all(page=${i})}" th:text="${i + 1}">Page number</a>
+        </li>
+        <li th:if="${page.hasNext()}">
+            <a th:href="@{/movies/view/all(page=${page.number + 1})}">Next</a>
+        </li>
     </ul>
 </div>
 </body>

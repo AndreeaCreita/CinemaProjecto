@@ -1,13 +1,9 @@
 package com.example.CinemaProjecto.dtos;
 
-import com.example.CinemaProjecto.models.Cinema;
-import com.example.CinemaProjecto.models.Movie;
-import com.example.CinemaProjecto.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +12,7 @@ public class TicketDto {
 
     private String userEmail;
 
-    private String movieName;
+    private String movieTitle;
 
     private String cinemaName;
 

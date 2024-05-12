@@ -2,6 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Create Ticket</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f2fd; /* Soft pink background */
+            color: #4a154b; /* Plum color for contrast */
+            margin: 40px;
+        }
+        h1 {
+            color: #d53f8c; /* Vivid pink for headings */
+            text-align: center;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+            width: 300px;
+            margin: 0 auto;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"],
+        input[type="datetime-local"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #d53f8c; /* Matching button background */
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #b83280; /* Darker pink on hover */
+        }
+    </style>
 </head>
 <body>
 <h1>Create a new Ticket</h1>

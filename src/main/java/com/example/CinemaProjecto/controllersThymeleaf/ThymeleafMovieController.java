@@ -48,7 +48,7 @@ public class ThymeleafMovieController {
     }
 
     @GetMapping("/movies/view/all")
-    public String getAllMovies(Model model, @PageableDefault(size = 10, sort = "title") Pageable pageable) {
+    public String getAllMovies(Model model, @PageableDefault(size = 5, sort = "title") Pageable pageable) {
         Page<MovieDto> movies = movieService.getAll(pageable);
         model.addAttribute("page", movies);
         model.addAttribute("title", "All Movies");

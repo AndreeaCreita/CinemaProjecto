@@ -115,7 +115,7 @@ public class  MovieController {
 
     @GetMapping("/all")
     public ResponseEntity<Page<MovieDto>> getAllMovies(
-            @PageableDefault(size = 10, sort = "title", direction = Sort.Direction.ASC) Pageable pageable
+            @PageableDefault(size = 5, sort = "title", direction = Sort.Direction.ASC) Pageable pageable
     ) {
         Page<MovieDto> movies = service.getAll(pageable);
         return new ResponseEntity<>(movies, HttpStatus.OK);

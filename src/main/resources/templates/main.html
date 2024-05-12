@@ -3,21 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>Cinema Projecto</title>
-
-    <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap CSS for styling and responsive design -->
     <link rel="stylesheet" href="/webjars/bootstrap/5.3.2/css/bootstrap.min.css"/>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="/webjars/font-awesome/6.4.0/css/all.min.css"/>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Lighter background to complement pink */
+            color: #495057; /* Dark gray text for better readability */
+        }
+        .navbar-custom {
+            background-color: #ff85a2; /* Soft pink background for the navbar */
+        }
+        .btn-custom {
+            background-color: #ff4d6d; /* Vibrant pink buttons */
+            color: #ffffff;
+        }
+        .btn-custom:hover {
+            background-color: #ff2043; /* Darker pink on hover */
+            color: #ffffff;
+        }
+        .input-group-text {
+            background-color: #ff85a2; /* Soft pink background for input groups */
+            border: 1px solid #ff4d6d; /* Pink border for a cohesive look */
+            color: #ffffff;
+        }
+        .form-control {
+            border: 1px solid #ff85a2;
+        }
+        .nav-link {
+            color: #ffffff !important; /* Ensure nav links are white */
+        }
+        .nav-link:hover {
+            color: #f8f9fa !important; /* Lighter shade on hover for contrast */
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="nav-link" th:href="@{'/'}"> <i class="fas fa-home mx-1"></i>  </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
+<div class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-custom rounded">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Cinema Projecto</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/tickets/view/create">Create Ticket</a>
+                    <a class="nav-link" href="/cinemas/view/all">View Cinemas</a>
+                </div>
+            </div>
+        </div>
     </nav>
+    <h1 class="display-4 text-center">Welcome to Cinema Projecto!</h1>
+    <p class="lead text-center">Your one-stop destination for booking cinema tickets and exploring movie schedules.</p>
+    <div class="d-flex justify-content-center mt-4">
+        <a href="/tickets/view/create" class="btn btn-custom mx-2">Book a Ticket</a>
+        <a href="/cinemas/view/all" class="btn btn-custom mx-2">Explore Cinemas</a>
+        <a href="/movies/view/all" class="btn btn-custom mx-2">View All Movies</a>
+    </div>
+    <div class="mt-4">
+        <h2 class="text-center">Filter Movies</h2>
+        <form th:action="@{/movies/view/all}" method="get" class="d-flex justify-content-center">
+            <div class="input-group mb-3 mx-2">
+                <span class="input-group-text" id="cinema-label">Cinema</span>
+                <input type="text" class="form-control" placeholder="Cinema Name" aria-label="Cinema" aria-describedby="cinema-label" name="cinemaName">
+            </div>
+            <div class="input-group mb-3 mx-2">
+                <span class="input-group-text" id="genre-label">Genre</span>
+                <input type="text" class="form-control" placeholder="Genre" aria-label="Genre" aria-describedby="genre-label" name="genre">
+            </div>
+            <button type="submit" class="btn btn-info">Filter</button>
+        </form>
+    </div>
 </div>
+
+<!-- Bootstrap and jQuery scripts for interactive elements and responsive behavior -->
+<script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+<script src="/webjars/bootstrap/5.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>

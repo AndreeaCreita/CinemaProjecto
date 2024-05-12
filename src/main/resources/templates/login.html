@@ -2,19 +2,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 <head>
     <title>Please Log In</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F8E8F4; /* Softer pink background */
+            color: #333; /* Dark text for readability */
+            padding: 20px;
+        }
+        h1 {
+            color: #D291BC; /* Soft pink for headers */
+            text-align: center;
+        }
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: auto;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #d3b6d8; /* Light pink border */
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #d789d7; /* Vibrant pink */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #b455b6; /* Darker pink on hover */
+        }
+        div[th:if] {
+            color: #d9534f; /* Red color for error messages */
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <h1>Please Log In</h1>
 <div th:if="${param.error}">
-    Invalid username and password.</div>
+    Invalid username and password.
+</div>
 <div th:if="${param.logout}">
-    You have been logged out.</div>
+    You have been logged out.
+</div>
 <form th:action="@{/login_handler}" method="post">
     <div>
-        <input type="text" name="email" placeholder="Email"/>
+        <input type="text" name="email" placeholder="Email" required/>
     </div>
     <div>
-        <input type="password" name="password" placeholder="Password"/>
+        <input type="password" name="password" placeholder="Password" required/>
     </div>
     <input type="submit" value="Log in" />
 </form>
